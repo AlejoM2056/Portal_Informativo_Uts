@@ -8,25 +8,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+
     @stack('styles')
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container-fluid px-4">
-            <a class="navbar-brand ms-5" href="/">
-                <img src="{{ asset('images/logo-uts.png') }}" alt="UTS Logo" height="60">
-            </a>
-            <div class="ms-auto">
-                <a href="{{ route('login') }}" class="btn btn-uts-green text-dark fw-bold px-4">
-                    <i class="bi bi-person-circle me-2"></i>Iniciar Sesión
+    <div class="contain-nav-hero">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+            <div class="container-fluid px-4">
+                <a id="contain-desktop-logos" class="navbar-brand ms-5" href="/">
+                    <img src="{{ asset('images/favicon.png') }}" alt="Favicon" height="50">
+                    <img src="{{ asset('images/escudo-uts.png') }}" alt="UTS Logo" height="50">
                 </a>
+                <a id="contain-mobile-logos" class="navbar-brand" href="/">
+                    <img src="{{ asset('images/programa-logo.png') }}" alt="Favicon" height="50">
+                </a>
+                <div class="ms-auto">
+                    <a href="https://sistemastg.uts.edu.co/tg" target="_blank" class="btn btn-uts-green px-3">
+                        <i class="bi bi-person-circle me-2"></i>Sistemas TG
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
-    <main>
-        @yield('content')
-    </main>
+        </nav>
+        <main>
+            @yield('content')
+        </main>
+    </div>
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">

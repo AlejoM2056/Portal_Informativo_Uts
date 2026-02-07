@@ -9,7 +9,7 @@
             <div class="col-lg-8 mx-auto text-center">
                 <div class="hero-content">
                     <div class="badge-info mb-4">
-                        <i class="bi bi-cpu me-2"></i>Facultad de Ingeniería de Sistemas
+                        <i class="bi bi-cpu me-2"></i>Programa de Ingeniería de Sistemas
                     </div>
                     <h1 class="hero-title">Portal Informativo</h1>
                     <h2 class="hero-subtitle">Ingeniería de Sistemas</h2>
@@ -38,8 +38,8 @@
                             <h3><i class="bi bi-info-circle-fill me-2"></i>Portal Informativo de Ingeniería de Sistemas
                             </h3>
                             <p class="mb-0">
-                                Este portal está dedicado exclusivamente a estudiantes, docentes y personal asociado a
-                                la Facultad de Ingeniería de Sistemas. Encuentra información sobre eventos, proyectos,
+                                Este portal está dedicado exclusivamente a estudiantes, docentes y personal asociado al
+                                programa de Ingeniería de Sistemas. Encuentra información sobre eventos, proyectos,
                                 convocatorias y recursos académicos. El acceso administrativo está disponible en la
                                 parte superior.
                             </p>

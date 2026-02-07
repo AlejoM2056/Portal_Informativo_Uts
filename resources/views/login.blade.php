@@ -30,39 +30,43 @@
                                     <h3>Iniciar Sesión</h3>
                                 </div>
 
-                                <form class="login-form" id="loginForm">
+                                {{-- Mensajes de error/éxito --}}
+                                @if(session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-circle me-2"></i>{{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                                @endif
+
+                                @if(session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                                @endif
+
+                                <form class="login-form" id="loginForm" method="POST" action="{{ route('login.post') }}">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="username">
                                             <i class="bi bi-person me-2"></i>Usuario
                                         </label>
-                                        <input type="text" class="form-control" id="username"
-                                            placeholder="Ingresa tu usuario" required>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            placeholder="Ingresa tu usuario" value="{{ old('username') }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="password">
                                             <i class="bi bi-lock me-2"></i>Contraseña
                                         </label>
                                         <div class="password-wrapper">
-                                            <input type="password" class="form-control" id="password"
+                                            <input type="password" class="form-control" id="password" name="password"
                                                 placeholder="Ingresa tu contraseña" required>
-                                            <button type="button" class="toggle-password" onclick="togglePassword()">
-                                                <i class="bi bi-eye" id="toggleIcon"></i>
-                                            </button>
                                         </div>
                                     </div>
-                                    <div class="form-options">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="remember">
-                                            <label class="form-check-label" for="remember">
-                                                Recordarme
-                                            </label>
-                                        </div>
-                                        <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
-                                    </div>
-                                    <a href="{{ url('/admin/dashboard') }}" class="btn-login">
+                                    <button type="submit" class="btn-login">
                                         <i class="bi bi-box-arrow-in-right me-2"></i>
                                         Iniciar Sesión
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -76,26 +80,4 @@
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-<style>
-
-</style>
-@endpush
-
-@push('scripts')
-<script>
-function togglePassword() {
-    const passwordInput = document.getElementById('password');
-    const toggleIcon = document.getElementById('toggleIcon');
-
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleIcon.classList.remove('bi-eye');
-        toggleIcon.classList.add('bi-eye-slash');
-    } else {
-        passwordInput.type = 'password';
-        toggleIcon.classList.remove('bi-eye-slash');
-        toggleIcon.classList.add('bi-eye');
-    }
-}
-</script>
 @endpush

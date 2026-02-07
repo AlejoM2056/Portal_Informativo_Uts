@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     
     @stack('styles')
 </head>
@@ -28,10 +30,13 @@
                     <span>Noticias</span>
                 </a>
             <div class="sidebar-footer">
-                <a href="{{ route('home') }}" class="nav-item">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Cerrar Sesion</span>
-                </a>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="nav-item btn-logout" style="border: none; background: none; width: 100%; text-align: left;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </form>
             </div>
         </aside>
 
@@ -51,10 +56,14 @@
                                 <i class="bi bi-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Configuración</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ route('login') }}"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item" style="border: none; background: none; cursor: pointer;">
+                                            <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>

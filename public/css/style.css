@@ -25,7 +25,12 @@ html {
 
 .navbar {
     padding: 0.8rem 0;
-    border-bottom: 2px solid #eee;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.2px);
+    -webkit-backdrop-filter: blur(2.2px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .navbar-brand img {
@@ -68,9 +73,30 @@ html {
     background-color: var(--uts-green);
     color: var(--uts-dark);
     border: none;
-    border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s ease;
+    color: #3e5013;
+    padding: 8px 0;
+}
+
+@media screen and (max-width: 500px) {
+    #contain-desktop-logos {
+        display: none;
+    }
+
+    #contain-mobile-logos {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    #contain-desktop-logos {
+        display: block;
+    }
+
+    #contain-mobile-logos {
+        display: none;
+    }
 }
 
 .btn-uts-green:hover {
@@ -80,9 +106,14 @@ html {
     box-shadow: 0 4px 12px rgba(164, 210, 51, 0.4);
 }
 
-.hero-section {
+.contain-nav-hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background: linear-gradient(135deg, var(--uts-blue) 0%, var(--uts-green) 100%);
+}
+
+.hero-section {
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--uts-blue) 0%, var(--uts-green) 100%); */
     padding: 80px 0;
     min-height: 85vh;
     display: flex;
@@ -198,9 +229,12 @@ html {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -496,19 +530,19 @@ footer {
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.5rem;
     }
-    
+
     .hero-description {
         font-size: 1rem;
     }
-    
+
     .section-header h2 {
         font-size: 2.2rem;
     }
-    
+
     .cta-content h2 {
         font-size: 2.2rem;
     }
@@ -518,37 +552,37 @@ footer {
     .hero-section {
         padding: 60px 0;
     }
-    
+
     .hero-title {
         font-size: 2rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.2rem;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
     }
-    
+
     .btn-primary-uts,
     .btn-outline-uts {
         width: 100%;
         text-align: center;
     }
-    
+
     .stat-value {
         font-size: 2.2rem;
     }
-    
+
     .section-header h2 {
         font-size: 1.8rem;
     }
-    
+
     .news-title {
         font-size: 1.3rem;
     }
-    
+
     .service-card h4 {
         font-size: 1.2rem;
     }
@@ -559,6 +593,7 @@ footer {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -576,16 +611,46 @@ footer {
     animation-fill-mode: both;
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; }
-.stat-card:nth-child(4) { animation-delay: 0.4s; }
+.stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
 
-.news-card:nth-child(1) { animation-delay: 0.1s; }
-.news-card:nth-child(2) { animation-delay: 0.3s; }
-.news-card:nth-child(3) { animation-delay: 0.5s; }
+.stat-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
 
-.service-card:nth-child(1) { animation-delay: 0.1s; }
-.service-card:nth-child(2) { animation-delay: 0.2s; }
-.service-card:nth-child(3) { animation-delay: 0.3s; }
-.service-card:nth-child(4) { animation-delay: 0.4s; }
+.stat-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.news-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.news-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.news-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.service-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.service-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.service-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
