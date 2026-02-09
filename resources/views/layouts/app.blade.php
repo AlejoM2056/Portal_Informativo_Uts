@@ -34,17 +34,32 @@
             @yield('content')
         </main>
     </div>
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">2025 UTS - Unidades Tecnológicas de Santander</p>
-                    <p class="small">¡Lo hacemos posible!</p>
+    <footer class="footer-uts">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="{{ asset('images/logo-uts.png') }}" alt="UTS Logo" class="uts-logo">
+            </div>
+            <div class="footer-info">
+                <div class="footer-section">
+                    <h4>Unidades Tecnológicas de Santander</h4>
+                    <p>Facultad de Ingeniería de Sistemas</p>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0">Santander - Colombia</p>
+                <div class="footer-section">
+                    <p><i class="bi bi-geo-alt-fill"></i> Calle de los Estudiantes #9-82<br>Edificio C Piso 2 / Bucaramanga</p>
+                    <p><i class="bi bi-envelope-fill"></i> sistemas@correo.uts.edu.co</p>
                 </div>
             </div>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/UnidadesTecnologicasdeSantanderUTS" class="social-link" title="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://x.com/Unidades_UTS" class="social-link" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.instagram.com/unidades_uts" class="social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.youtube.com/@unidades_uts/" class="social-link" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://t.me/ingsistemasuts" class="social-link" title="Telegram"><i class="bi bi-telegram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {{ date('Y') }} Unidades Tecnológicas de Santander - Todos los derechos reservados</p>
+            <p class="footer-tagline">¡Lo hacemos posible!</p>
         </div>
     </footer>
 
