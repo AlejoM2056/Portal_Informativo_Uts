@@ -387,7 +387,10 @@ function abrirNoticiaExpandida(event, noticiaId) {
         <p>Contenido no disponible en este momento. Por favor, contacta con la administración para más información.</p>
     `;
 
-    document.getElementById('modalContenido').innerHTML = contenidoCompleto;
+    const contenidoFormateado = contenidoCompleto
+        .replace(/\n\n/g, '</p><p>') 
+        .replace(/\n/g, '<br>');      
+    document.getElementById('modalContenido').innerHTML = contenidoFormateado;
 
     setTimeout(() => {
         const modal = document.getElementById('noticiaModal');
