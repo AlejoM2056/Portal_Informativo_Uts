@@ -344,13 +344,31 @@ function filtrarPorCategoria(categoria) {
     }
 }
 
+function formatearContenido(texto) {
+    if (!texto) return '';
+    const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)/g;
+    texto = texto.replace(urlRegex, function(url) {
+        let href = url;
+        if (url.startsWith('www.')) {
+            href = 'https://' + url;
+        }
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+    texto = texto.replace(/\n\n+/g, '</p><p>');
+    texto = texto.replace(/\n/g, '<br>');
+    if (!texto.startsWith('<p>')) {
+        texto = '<p>' + texto + '</p>';
+    }
+    
+    return texto;
+}
+
 function abrirNoticiaExpandida(event, noticiaId) {
     event.preventDefault();
 
     const card = event.target.closest('.noticia-card');
     card.classList.add('expanding');
 
-    // Buscar la noticia por ID
     const noticia = noticiasData[noticiaId];
     
     if (!noticia) {
@@ -386,10 +404,8 @@ function abrirNoticiaExpandida(event, noticiaId) {
     const contenidoCompleto = (esArray ? noticia.contenido_completo : noticia.contenido) || `
         <p>Contenido no disponible en este momento. Por favor, contacta con la administración para más información.</p>
     `;
-
-    const contenidoFormateado = contenidoCompleto
-        .replace(/\n\n/g, '</p><p>') 
-        .replace(/\n/g, '<br>');      
+    
+    const contenidoFormateado = formatearContenido(contenidoCompleto);
     document.getElementById('modalContenido').innerHTML = contenidoFormateado;
 
     setTimeout(() => {
