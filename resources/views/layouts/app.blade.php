@@ -27,6 +27,10 @@
                     <a href="https://sistemastg.uts.edu.co/tg" target="_blank" class="btn btn-uts-green px-3">
                         <i class="bi bi-person-circle me-2"></i>Sistemas TG
                     </a>
+
+                    <a href="https://sistemastg.uts.edu.co/chatbot" target="_blank" class="btn btn-asistente px-3">
+                        <i class="bi bi-robot me-2"></i> Asistente
+                    </a>
                 </div>
             </div>
         </nav>

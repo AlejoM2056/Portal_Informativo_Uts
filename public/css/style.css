@@ -79,6 +79,15 @@ html {
     padding: 8px 0;
 }
 
+.btn-asistente {
+    background-color: #cbcbcb;
+    color: var(--uts-dark);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
 @media screen and (max-width: 500px) {
     #contain-desktop-logos {
         display: none;
@@ -104,6 +113,13 @@ html {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(164, 210, 51, 0.4);
+}
+
+.btn-asistente:hover {
+    background-color: #a9a9a9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(171, 171, 171, 0.4);
 }
 
 .contain-nav-hero {
