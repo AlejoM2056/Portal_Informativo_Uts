@@ -18,7 +18,7 @@
                         de Ingeniería de Sistemas de las Unidades Tecnológicas de Santander.
                     </p>
                     <div class="hero-buttons mt-4 d-flex justify-content-center">
-                        <a href="#noticias" class="btn btn-primary-uts">
+                        <a href="#noticias" class="btn btn-noticias-highlight">
                             <i class="bi bi-newspaper me-2"></i>Ver Noticias
                         </a>
                     </div>
@@ -66,7 +66,6 @@
         </div>
 
         @php
-            // Determinar si $noticias es un array o un paginador
             $esArray = is_array($noticias);
             $noticiasCollection = $esArray ? collect($noticias) : $noticias;
             $totalNoticias = $esArray ? count($noticias) : $noticias->total();
