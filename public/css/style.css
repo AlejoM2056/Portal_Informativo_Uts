@@ -25,7 +25,6 @@ html {
 
 .navbar {
     padding: 0.8rem 0;
-    /* From https://css.glass */
     background: rgba(255, 255, 255, 0.86);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(2.2px);
@@ -128,8 +127,6 @@ html {
 }
 
 .hero-section {
-    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background: linear-gradient(135deg, var(--uts-blue) 0%, var(--uts-green) 100%); */
     padding: 80px 0;
     min-height: 85vh;
     display: flex;
@@ -243,6 +240,46 @@ html {
 .hero-image img {
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
 }
+
+
+@keyframes btn-attention {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.02); }
+}
+
+.btn-noticias-highlight {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    background: var(--uts-green);
+    color: var(--uts-dark);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(164, 210, 51, 0.5),
+                0 2px 0px var(--uts-dark-green);
+    transition: all 0.2s ease;
+    animation: btn-attention 2.5s ease-in-out infinite;
+}
+
+.btn-noticias-highlight:hover {
+    background: var(--uts-dark-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(164, 210, 51, 0.6),
+                0 2px 0px #5a7a1a;
+    animation: none;
+}
+
+.btn-noticias-highlight:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 12px rgba(164, 210, 51, 0.4);
+}
+
+
 
 @keyframes float {
 
@@ -502,9 +539,10 @@ html {
 }
 
 .cta-section {
-    padding: 80px 0;
+    padding: 40px 0;
     background: linear-gradient(135deg, var(--uts-dark) 0%, #1a1a1a 100%);
     text-align: center;
+    padding-bottom: 10%;
 }
 
 .cta-content h2 {
@@ -543,7 +581,6 @@ html {
     background: linear-gradient(135deg, #0066A1 0%, #004d7a 50%, #A4D233 100%);
     color: white;
     padding: 3rem 2rem 1.5rem;
-    margin-top: 4rem;
 }
 
 .footer-content {
@@ -676,13 +713,17 @@ html {
     .cta-content h2 {
         font-size: 2.2rem;
     }
+    .btn-uts-green, .btn-asistente {
+        padding: 0.2rem 0.4rem !important;
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 60px 0;
+        padding: 40px 0;
+        min-height: auto;
     }
-
     .hero-title {
         font-size: 2rem;
     }
@@ -715,6 +756,19 @@ html {
 
     .service-card h4 {
         font-size: 1.2rem;
+    }
+    .btn-noticias-highlight {
+        padding: 0.85rem 1.5rem;
+        font-size: 1.3rem;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
     }
 }
 
