@@ -21,7 +21,7 @@
                     <img src="{{ asset('images/escudo-uts.png') }}" alt="UTS Logo" height="50">
                 </a>
                 <a id="contain-mobile-logos" class="navbar-brand" href="/">
-                    <img src="{{ asset('images/programa-logo.png') }}" alt="Favicon" height="50">
+                    <img src="{{ asset('images/programa-logo.png') }}" alt="Favicon" height="40">
                 </a>
                 <div class="ms-auto">
                     <a href="https://sistemastg.uts.edu.co/tg" target="_blank" class="btn btn-uts-green px-3">
