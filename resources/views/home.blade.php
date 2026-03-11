@@ -27,42 +27,11 @@
         </div>
     </div>
 </section>
-
-<section class="info-banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="info-box">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h3><i class="bi bi-info-circle-fill me-2"></i>Portal Informativo de Ingeniería de Sistemas
-                            </h3>
-                            <p class="mb-0">
-                                Este portal está dedicado exclusivamente a estudiantes, docentes y personal asociado al
-                                programa de Ingeniería de Sistemas. Encuentra información sobre eventos, proyectos,
-                                convocatorias y recursos académicos. El acceso administrativo está disponible en la
-                                parte superior.
-                            </p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <i class="bi bi-code-slash info-icon"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="news-section" id="noticias">
     <div class="container">
-        <div class="section-header-news">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h1>Noticias Institucionales</h1>
-                    <p class="text-muted">Mantente al día con lo que sucede en la facultad</p>
-                </div>
-            </div>
+        <div class="w-100 text-center">
+            <h1 class="fw-bold">Noticias Institucionales</h1>
+            <p class="text-muted">Mantente al día con lo que sucede en la facultad</p>
         </div>
 
         @php
@@ -73,53 +42,8 @@
         @endphp
 
         @if($countNoticias > 0)
-        <div class="filtros-categorias">
-            <div class="d-flex justify-content-center flex-wrap gap-2">
-                <button class="btn-categoria active" data-categoria="todas" onclick="filtrarPorCategoria('todas')">
-                    <i class="bi bi-grid-3x3-gap me-2"></i>Todas
-                    <span class="badge-count">{{ $totalNoticias }}</span>
-                </button>
-                @php
-                if ($esArray) {
-                    $categorias = collect($noticias)->pluck('categoria')->unique()->sort()->values();
-                    $categoriaCount = collect($noticias)->groupBy('categoria')->map->count();
-                } else {
-                    $categorias = $noticias->pluck('categoria')->unique()->sort()->values();
-                    $categoriaCount = $noticias->groupBy('categoria')->map->count();
-                }
-                
-                $categoriaIcons = [
-                    'Actas' => 'calendar-event',
-                    'Inscripciones' => 'person-check',
-                    'Comité' => 'people',
-                    'Estudiantes' => 'mortarboard',
-                    'Docentes' => 'book-half',
-                    'Investigación' => 'beaker',
-                    'Capacitación' => 'journals',
-                    'Banco de ideas' => 'lightbulb'
-                ];
-                @endphp
-                @foreach($categorias as $categoria)
-                <button class="btn-categoria" data-categoria="{{ $categoria }}"
-                    onclick="filtrarPorCategoria('{{ $categoria }}')">
-                    <i class="bi bi-{{ $categoriaIcons[$categoria] ?? 'tag' }} me-2"></i>{{ $categoria }}
-                    <span class="badge-count">{{ $categoriaCount[$categoria] ?? 0 }}</span>
-                </button>
-                @endforeach
-            </div>
-        </div>
 
-        <div class="resultados-info">
-            <p class="text-muted text-center">
-                Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong> 
-                @if(!$esArray && $totalNoticias != $countNoticias)
-                    de <strong>{{ $totalNoticias }}</strong>
-                @endif
-                noticias
-                <span id="categoriaActual"></span>
-            </p>
-        </div>
-
+        {{-- TARJETAS DE NOTICIAS --}}
         <div class="row g-4" id="noticiasContainer">
             @foreach($noticiasCollection as $noticia)
             @php
@@ -151,8 +75,8 @@
                                 <i class="bi bi-clock"></i> {{ $noticiaFecha }}
                             </span>
                         </div>
-                        <h3 class="noticia-titulo">{{ $noticiaTitulo }}</h3>
-                        <p class="noticia-descripcion">{{ Str::limit($noticiaDescripcion, 120) }}</p>
+                        <h3 class="noticia-titulo">{!! $noticiaTitulo !!}</h3>
+                        <p class="noticia-descripcion">{!! Str::limit(strip_tags($noticiaDescripcion), 120) !!}</p>
                         <a href="#" class="noticia-link" onclick="abrirNoticiaExpandida(event, {{ $noticiaId }})">
                             Leer más <i class="bi bi-arrow-right"></i>
                         </a>
@@ -173,11 +97,60 @@
             </div>
         </div>
 
+        {{-- FILTROS DE CATEGORÍAS --}}
+        @php
+        if ($esArray) {
+            $categorias = collect($noticias)->pluck('categoria')->unique()->sort()->values();
+            $categoriaCount = collect($noticias)->groupBy('categoria')->map->count();
+        } else {
+            $categorias = $noticias->pluck('categoria')->unique()->sort()->values();
+            $categoriaCount = $noticias->groupBy('categoria')->map->count();
+        }
+
+        $categoriaIcons = [
+            'Actas' => 'calendar-event',
+            'Inscripciones' => 'person-check',
+            'Comité' => 'people',
+            'Estudiantes' => 'mortarboard',
+            'Docentes' => 'book-half',
+            'Investigación' => 'beaker',
+            'Capacitación' => 'journals',
+            'Banco de ideas' => 'lightbulb'
+        ];
+        @endphp
+
+        <div class="filtros-categorias">
+            <div class="d-flex justify-content-center flex-wrap gap-2">
+                <button class="btn-categoria active" data-categoria="todas" onclick="filtrarPorCategoria('todas')">
+                    <i class="bi bi-grid-3x3-gap me-2"></i>Todas
+                    <span class="badge-count">{{ $totalNoticias }}</span>
+                </button>
+                @foreach($categorias as $categoria)
+                <button class="btn-categoria" data-categoria="{{ $categoria }}"
+                    onclick="filtrarPorCategoria('{{ $categoria }}')">
+                    <i class="bi bi-{{ $categoriaIcons[$categoria] ?? 'tag' }} me-2"></i>{{ $categoria }}
+                    <span class="badge-count">{{ $categoriaCount[$categoria] ?? 0 }}</span>
+                </button>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- CONTADOR DE RESULTADOS --}}
+        <div class="resultados-info">
+            <p class="text-muted text-center">
+                Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong>
+                @if(!$esArray && $totalNoticias != $countNoticias)
+                    de <strong>{{ $totalNoticias }}</strong>
+                @endif
+                noticias
+                <span id="categoriaActual"></span>
+            </p>
+        </div>
+
         @if(!$esArray && $noticias->hasPages())
         <div class="pagination-wrapper mt-5">
             <nav>
                 <ul class="pagination justify-content-center">
-                    {{-- Botón Anterior --}}
                     @if($noticias->onFirstPage())
                         <li class="page-item disabled">
                             <span class="page-link"><i class="bi bi-chevron-left"></i> Anterior</span>
@@ -225,6 +198,32 @@
             <p class="text-muted">Aún no se han publicado noticias. Vuelve pronto para ver las novedades.</p>
         </div>
         @endif
+    </div>
+</section>
+
+<section class="info-banner" style="padding-top: 0; margin-top: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="info-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3><i class="bi bi-info-circle-fill me-2"></i>Portal Informativo de Ingeniería de Sistemas
+                            </h3>
+                            <p class="mb-0">
+                                Este portal está dedicado exclusivamente a estudiantes, docentes y personal asociado al
+                                programa de Ingeniería de Sistemas. Encuentra información sobre eventos, proyectos,
+                                convocatorias y recursos académicos. El acceso administrativo está disponible en la
+                                parte superior.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="bi bi-code-slash info-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -397,8 +396,8 @@ function abrirNoticiaExpandida(event, noticiaId) {
     }
     document.getElementById('modalFecha').textContent = fechaFormateada;
     
-    document.getElementById('modalTitulo').textContent = noticia.titulo;
-    document.getElementById('modalDescripcion').textContent = noticia.descripcion;
+    document.getElementById('modalTitulo').innerHTML = noticia.titulo;
+    document.getElementById('modalDescripcion').innerHTML = noticia.descripcion;
 
     const contenidoCompleto = (esArray ? noticia.contenido_completo : noticia.contenido) || `
         <p>Contenido no disponible en este momento. Por favor, contacta con la administración para más información.</p>
