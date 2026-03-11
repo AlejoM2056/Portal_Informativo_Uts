@@ -94,7 +94,7 @@
                     <tr>
                         <td>#{{ $noticia['id'] }}</td>
                         <td>
-                            <strong>{{ $noticia['titulo'] }}</strong>
+                            <strong>{!! strip_tags($noticia->titulo) !!}</strong>
                         </td>
                         <td>{{ $noticia['categoria'] }}</td>
                         <td>{{ $noticia['fecha'] }}</td>
