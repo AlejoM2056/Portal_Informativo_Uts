@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach($noticiasRecientes as $noticia)
                                 <tr>
-                                    <td><strong>{{ $noticia->titulo }}</strong></td>
+                                    <td><strong>{!! strip_tags($noticia->titulo) !!}</strong></td>
                                     <td>{{ $noticia->categoria }}</td>
                                     <td>{{ $noticia->fecha->format('d/m/Y') }}</td>
                                     <td>
