@@ -46,7 +46,7 @@
             <div class="footer-info">
                 <div class="footer-section">
                     <h4>Unidades Tecnológicas de Santander</h4>
-                    <p>Facultad de Ingeniería de Sistemas</p>
+                    <p>Programa de Ingeniería de Sistemas</p>
                 </div>
                 <div class="footer-section">
                     <p><i class="bi bi-geo-alt-fill"></i> Calle de los Estudiantes #9-82<br>Edificio C Piso 2 / Bucaramanga</p>
