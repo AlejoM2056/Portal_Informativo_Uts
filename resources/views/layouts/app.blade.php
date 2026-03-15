@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
 
     @stack('styles')
@@ -24,11 +23,10 @@
                     <img src="{{ asset('images/programa-logo.png') }}" alt="Favicon" height="40">
                 </a>
                 <div class="ms-auto">
-                    <a href="https://sistemastg.uts.edu.co/tg" target="_blank" class="btn btn-uts-green px-3">
-                        <i class="bi bi-person-circle me-2"></i>Sistemas TG
-                    </a>
-
-                    <a href="https://sistemastg.uts.edu.co/chatbot" target="_blank" class="btn btn-asistente px-3">
+                <a href="{{ route('login') }}" class="btn btn-uts-green px-3">
+                    <i class="bi bi-person-circle me-2"></i>Sistemas TG
+                </a>
+                    <a href="https://sistemastg.uts.edu.co/chatbot" target="_blank" class="btn btn-asistente px-2">
                         <i class="bi bi-robot me-2"></i> Asistente
                     </a>
                 </div>
