@@ -16,7 +16,8 @@ class Noticia extends Model
         'contenido',
         'imagen',
         'fecha',
-        'estado'
+        'estado',
+        'destacada',
     ];
 
     protected $casts = [
