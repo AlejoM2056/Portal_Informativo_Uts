@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Editar Noticia')
 @section('content')
+
 <div class="page-header">
     <h1>Editar Noticia</h1>
     <p>Modifica la información de la noticia</p>
@@ -179,8 +180,7 @@
 @endsection
 
 @push('scripts')
-{{-- ══ LIBRERÍAS QUILL ══ --}}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 
 <style>
