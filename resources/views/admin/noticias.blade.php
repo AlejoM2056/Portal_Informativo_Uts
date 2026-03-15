@@ -103,10 +103,19 @@
                                 {{ $noticia['estado'] }}
                             </span>
                         </td>
+                        {{-- En el <tbody>, reemplaza el bloque de acciones --}}
                         <td>
                             <div class="d-flex gap-2">
                                 <button class="btn-action" title="Ver" onclick="verNoticia({{ $noticia['id'] }})">
                                     <i class="bi bi-eye"></i>
+                                </button>
+                                <button
+                                    class="btn-action destacar-btn {{ $noticia->destacada ? 'destacada-activa' : '' }}"
+                                    title="{{ $noticia->destacada ? 'Quitar Noticia Destacada' : 'Destacar Noticia' }}"
+                                    onclick="toggleDestacar({{ $noticia['id'] }}, this)"
+                                    style="{{ $noticia->destacada ? 'color: #f59e0b; border-color: #f59e0b;' : '' }}"
+                                >
+                                    <i class="bi {{ $noticia->destacada ? 'bi-star-fill' : 'bi-star' }}"></i>
                                 </button>
                                 <button class="btn-action" title="Editar" onclick="editarNoticia({{ $noticia['id'] }})">
                                     <i class="bi bi-pencil"></i>
@@ -197,17 +206,14 @@
         document.getElementById('filtrosForm').submit();
     });
 
-    // Función para ver noticia
     function verNoticia(id) {
         window.location.href = '/admin/noticias/' + id;
     }
 
-    // Función para editar noticia
     function editarNoticia(id) {
         window.location.href = '/admin/noticias/' + id + '/edit';
     }
 
-    // Función para eliminar noticia
     function eliminarNoticia(id, titulo) {
         if (confirm('¿Estás seguro de que deseas eliminar la noticia:\n\n"' + titulo + '"?\n\nEsta acción no se puede deshacer.')) {
 
@@ -232,6 +238,70 @@
             document.body.appendChild(form);
             form.submit();
         }
+    }
+
+    function toggleDestacar(id, btn) {
+        const icon   = btn.querySelector('i');
+        const activa = btn.classList.contains('destacada-activa');
+
+        fetch(`/admin/noticias/${id}/destacar`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 422) {
+                mostrarToast(data.message, 'warning');
+                return;
+            }
+            if (data.success) {
+                if (data.destacada) {
+                    btn.classList.add('destacada-activa');
+                    btn.style.color       = '#f59e0b';
+                    btn.style.borderColor = '#f59e0b';
+                    btn.title = 'Quitar del carrusel';
+                    icon.className = 'bi bi-star-fill';
+                } else {
+                    btn.classList.remove('destacada-activa');
+                    btn.style.color       = '';
+                    btn.style.borderColor = '';
+                    btn.title = 'Destacar en carrusel';
+                    icon.className = 'bi bi-star';
+                }
+                mostrarToast(data.message, 'success');
+            }
+        })
+        .catch(() => mostrarToast('Error al procesar la solicitud.', 'error'));
+    }
+
+    function mostrarToast(mensaje, tipo) {
+        const colores = {
+            success: '#198754',
+            warning: '#f59e0b',
+            error:   '#dc3545'
+        };
+        const toast = document.createElement('div');
+        toast.textContent = mensaje;
+        Object.assign(toast.style, {
+            position:     'fixed',
+            bottom:       '2rem',
+            right:        '2rem',
+            background:   colores[tipo] || '#333',
+            color:        '#fff',
+            padding:      '0.85rem 1.4rem',
+            borderRadius: '8px',
+            fontSize:     '0.9rem',
+            fontWeight:   '500',
+            boxShadow:    '0 4px 12px rgba(0,0,0,0.2)',
+            zIndex:       '9999',
+            transition:   'opacity 0.4s ease'
+        });
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '0'; }, 2800);
+        setTimeout(() => toast.remove(), 3300);
     }
 </script>
 @endpush
