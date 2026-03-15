@@ -91,6 +91,8 @@
                         <span style="width:1px; height:22px; background:#ddd; margin: 0 6px;"></span>
                         <select class="ql-color" title="Color de texto"></select>
                         <select class="ql-background" title="Color de fondo"></select>
+                        <span style="width:1px; height:22px; background:#ddd; margin: 0 6px;"></span>
+                        <button class="ql-image" title="Insertar imagen"></button>
                     </div>
                     <div id="quill-editor" style="border: 1.5px solid #e0e0e0; border-radius: 0 0 10px 10px; min-height: 280px; font-size: 1rem; background: white;"></div>
                     <input type="hidden" name="contenido" id="contenido">
@@ -299,7 +301,49 @@
 
     var quill = new Quill('#quill-editor', {
         theme: 'snow',
-        modules: { toolbar: '#quill-toolbar' },
+        modules: {
+            toolbar: {
+                container: '#quill-toolbar',
+                handlers: {
+                    image: function() {
+                        const input = document.createElement('input');
+                        input.setAttribute('type', 'file');
+                        input.setAttribute('accept', 'image/*');
+                        input.click();
+
+                        input.onchange = async function() {
+                            const file = input.files[0];
+                            if (!file) return;
+
+                            const range = quill.getSelection(true);
+                            quill.insertText(range.index, 'Subiendo imagen...', 'italic', true);
+
+                            const formData = new FormData();
+                            formData.append('imagen', file);
+                            formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
+
+                            try {
+                                const response = await fetch('{{ route("admin.noticias.upload-imagen") }}', {
+                                    method: 'POST',
+                                    body: formData
+                                });
+                                const data = await response.json();
+                                quill.deleteText(range.index, 'Subiendo imagen...'.length);
+                                if (data.url) {
+                                    quill.insertEmbed(range.index, 'image', data.url);
+                                    quill.setSelection(range.index + 1);
+                                } else {
+                                    alert('Error al subir la imagen');
+                                }
+                            } catch (e) {
+                                quill.deleteText(range.index, 'Subiendo imagen...'.length);
+                                alert('Error al subir la imagen');
+                            }
+                        };
+                    }
+                }
+            }
+        },
         placeholder: 'Escribe el contenido completo de la noticia...'
     });
 
