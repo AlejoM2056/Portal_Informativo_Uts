@@ -1,7 +1,23 @@
- .noticia-contenido {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--uts-dark);
+    .noticia-contenido {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--uts-dark);
+            overflow: hidden;
+        }
+    .noticia-contenido img {
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 8px;
+        display: block;
+    }
+
+    .noticia-contenido {
+        overflow: hidden;
+        word-break: break-word;
+    }
+
+    .form-card {
+        overflow: hidden;
     }
 
     .info-list {
@@ -42,3 +58,4 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
     }
+
