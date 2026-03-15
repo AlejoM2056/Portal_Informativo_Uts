@@ -101,7 +101,6 @@ class NoticiaController extends Controller
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
-        // Si se sube una nueva imagen, elimina la anterior y guarda la nueva
         if ($request->hasFile('imagen')) {
             if ($noticia->imagen && file_exists(public_path('images/noticias/' . $noticia->imagen))) {
                 unlink(public_path('images/noticias/' . $noticia->imagen));
@@ -119,7 +118,6 @@ class NoticiaController extends Controller
             ->with('success', '¡Noticia actualizada exitosamente!');
     }
 
-    // Elimina una noticia y su imagen asociada
     public function destroy(Noticia $noticia)
     {
         if ($noticia->imagen && file_exists(public_path('images/noticias/' . $noticia->imagen))) {
@@ -130,5 +128,42 @@ class NoticiaController extends Controller
 
         return redirect()->route('admin.noticias')
             ->with('success', '¡Noticia eliminada exitosamente!');
+    }
+    public function uploadImagen(Request $request){
+        $request->validate([
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
+        ]);
+
+        $imagen = $request->file('imagen');
+        $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+        $imagen->move(public_path('images/noticias'), $nombreImagen);
+
+        return response()->json([
+            'url' => asset('images/noticias/' . $nombreImagen)
+        ]);
+    }
+
+    public function toggleDestacar($id)
+    {
+        $noticia = Noticia::findOrFail($id);
+
+        if (!$noticia->destacada) {
+            $totalDestacadas = Noticia::where('destacada', true)->count();
+            if ($totalDestacadas >= 5) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ya tienes 5 noticias destacadas. Quita una antes de destacar otra.'
+                ], 422);
+            }
+        }
+
+        $noticia->destacada = !$noticia->destacada;
+        $noticia->save();
+
+        return response()->json([
+            'success'    => true,
+            'destacada'  => $noticia->destacada,
+            'message'    => $noticia->destacada ? 'Noticia destacada.' : 'Noticia quitada del carrusel.'
+        ]);
     }
 }
