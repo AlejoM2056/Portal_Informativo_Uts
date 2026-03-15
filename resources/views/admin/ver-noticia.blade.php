@@ -44,6 +44,7 @@
                 <h4 class="mb-3">Descripción</h4>
                 <p class="lead">{!! $noticia->descripcion !!}</p>
             </div>
+
             <div>
                 <h4 class="mb-3">Contenido</h4>
                 <div class="noticia-contenido">
