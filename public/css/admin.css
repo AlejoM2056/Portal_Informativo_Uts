@@ -355,6 +355,22 @@ body {
     color: #155724;
 }
 
+    .noticia-contenido img {
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 8px;
+        display: block;
+    }
+
+    .noticia-contenido {
+        overflow: hidden;
+        word-break: break-word;
+    }
+
+    .form-card {
+        overflow: hidden;
+    }
+
 .badge-status.borrador {
     background-color: #fff3cd;
     color: #856404;
