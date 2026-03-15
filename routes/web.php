@@ -8,16 +8,14 @@ use App\Http\Controllers\NoticiaController;
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Página de login (vista)
+// Página de login
 Route::get('/login', [HomeController::class, 'login'])->name('login');
-
-// Procesar login
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Panel de administración (PROTEGIDO)
+// Panel de administración
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
@@ -34,4 +32,10 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
         'update' => 'admin.noticias.update',
         'destroy' => 'admin.noticias.destroy',
     ]);
+
+    Route::post('noticias/{id}/destacar', [NoticiaController::class, 'toggleDestacar'])
+    ->name('admin.noticias.destacar');
+
+    Route::post('/admin/noticias/upload-imagen', [NoticiaController::class, 'uploadImagen'])
+    ->name('admin.noticias.upload-imagen');
 });
