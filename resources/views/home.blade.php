@@ -3,6 +3,57 @@
 @section('title', 'Portal Informativo - Ingeniería de Sistemas UTS')
 
 @section('content')
+
+<section class="carousel-ultimas-section">
+    <div class="carousel-header-wrapper">
+        <h1 class="carousel-section-title">Noticias Destacadas</h1>
+        <p class="carousel-section-sub">Las publicaciones más relevantes del programa</p>
+    </div>
+
+    <div class="carousel-track-outer">
+        @if($noticiasDestacadas->count() > 0)
+        <div class="carousel-track">
+            @foreach([1, 2] as $loop)
+                @foreach($noticiasDestacadas as $noticia)
+                @php
+                    $cId     = $noticia->id;
+                    $cTitulo = $noticia->titulo;
+                    $cImg    = $noticia->imagen;
+                    $cCat    = $noticia->categoria;
+                    $cImgUrl = $cImg
+                        ? asset('storage/' . $cImg)
+                        : asset('images/placeholder-noticia.jpg');
+                @endphp
+                <div class="carousel-card" onclick="abrirNoticiaExpandida(event, {{ $cId }})" style="cursor:pointer;">
+                    <div class="carousel-card-img-wrap">
+                        <img src="{{ $cImgUrl }}"
+                             alt="{{ $cTitulo }}"
+                             onerror="this.src='{{ asset('images/placeholder-noticia.jpg') }}'">
+                        <div class="carousel-card-overlay"></div>
+                        <span class="carousel-badge-nuevo">
+                            <i class="bi bi-star-fill"></i> DESTACADO
+                        </span>
+                        <span class="carousel-cat-badge">{{ $cCat }}</span>
+                    </div>
+                    <div class="carousel-card-body">
+                        <p class="carousel-card-title">{!! Str::limit(strip_tags($cTitulo), 70) !!}</p>
+                        <span class="carousel-read-more">
+                            Leer más <i class="bi bi-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+                @endforeach
+            @endforeach
+        </div>
+        @else
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-star" style="font-size: 3rem; opacity: 0.3;"></i>
+            <p class="mt-3">No hay noticias destacadas aún.</p>
+        </div>
+        @endif
+    </div>
+</section>
+
 <section class="hero-section">
     <div class="container">
         <div class="row align-items-center min-vh-10">
@@ -17,7 +68,7 @@
                         Mantente informado sobre eventos, noticias y recursos exclusivos para la comunidad
                         de Ingeniería de Sistemas de las Unidades Tecnológicas de Santander.
                     </p>
-                    <div class="hero-buttons mt-4 d-flex justify-content-center">
+                    <div class="hero-buttons mt-1 d-flex justify-content-center">
                         <a href="#noticias" class="btn btn-noticias-highlight">
                             <i class="bi bi-newspaper me-2"></i>Ver Noticias
                         </a>
@@ -31,7 +82,7 @@
     <div class="container">
         <div class="w-100 text-center">
             <h1 class="fw-bold">Noticias Institucionales</h1>
-            <p class="text-muted">Mantente al día con lo que sucede en la facultad</p>
+            <p class="text-muted">Mantente al día con lo que sucede en el programa</p>
         </div>
 
         @php
@@ -119,6 +170,18 @@
         ];
         @endphp
 
+        {{-- CONTADOR DE RESULTADOS --}}
+        <div class="resultados-info">
+            <br><p class="text-muted text-center">
+                Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong>
+                @if(!$esArray && $totalNoticias != $countNoticias)
+                    de <strong>{{ $totalNoticias }}</strong>
+                @endif
+                noticias
+                <span id="categoriaActual"></span>
+            </p>
+        </div>
+
         <div class="filtros-categorias">
             <div class="d-flex justify-content-center flex-wrap gap-2">
                 <button class="btn-categoria active" data-categoria="todas" onclick="filtrarPorCategoria('todas')">
@@ -135,17 +198,7 @@
             </div>
         </div>
 
-        {{-- CONTADOR DE RESULTADOS --}}
-        <div class="resultados-info">
-            <p class="text-muted text-center">
-                Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong>
-                @if(!$esArray && $totalNoticias != $countNoticias)
-                    de <strong>{{ $totalNoticias }}</strong>
-                @endif
-                noticias
-                <span id="categoriaActual"></span>
-            </p>
-        </div>
+       
 
         @if(!$esArray && $noticias->hasPages())
         <div class="pagination-wrapper mt-5">
@@ -364,8 +417,9 @@ function formatearContenido(texto) {
 function abrirNoticiaExpandida(event, noticiaId) {
     event.preventDefault();
 
-    const card = event.target.closest('.noticia-card');
-    card.classList.add('expanding');
+    const card = event.target.closest('.noticia-card') || event.target.closest('.carousel-card');
+    
+    if (card) card.classList.add('expanding');
 
     const noticia = noticiasData[noticiaId];
     
