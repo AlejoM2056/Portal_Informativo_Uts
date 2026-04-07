@@ -20,15 +20,11 @@
                     $cTitulo = $noticia->titulo;
                     $cImg    = $noticia->imagen;
                     $cCat    = $noticia->categoria;
-                    $cImgUrl = $cImg
-                        ? asset('storage/' . $cImg)
-                        : asset('images/placeholder-noticia.jpg');
                 @endphp
                 <div class="carousel-card" onclick="abrirNoticiaExpandida(event, {{ $cId }})" style="cursor:pointer;">
                     <div class="carousel-card-img-wrap">
-                        <img src="{{ $cImgUrl }}"
-                             alt="{{ $cTitulo }}"
-                             onerror="this.src='{{ asset('images/placeholder-noticia.jpg') }}'">
+                       <img src="{{ $cImg ? asset('images/noticias/' . $cImg) : asset('images/placeholder-noticia.jpg') }}"alt="{{ $cTitulo }}"
+                        onerror="this.src='{{ asset('images/placeholder-noticia.jpg') }}'">
                         <div class="carousel-card-overlay"></div>
                         <span class="carousel-badge-nuevo">
                             <i class="bi bi-star-fill"></i> DESTACADO
@@ -54,24 +50,25 @@
     </div>
 </section>
 
-<section class="hero-section">
+<section class="info-banner" style="padding-top: 0; margin-top: 0;">
     <div class="container">
-        <div class="row align-items-center min-vh-10">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="hero-content">
-                    <div class="badge-info mb-4">
-                        <i class="bi bi-cpu me-2"></i>Programa de Ingeniería de Sistemas
-                    </div>
-                    <h1 class="hero-title">Portal Informativo</h1>
-                    <h2 class="hero-subtitle">Ingeniería de Sistemas</h2>
-                    <p class="hero-description">
-                        Mantente informado sobre eventos, noticias y recursos exclusivos para la comunidad
-                        de Ingeniería de Sistemas de las Unidades Tecnológicas de Santander.
-                    </p>
-                    <div class="hero-buttons mt-1 d-flex justify-content-center">
-                        <a href="#noticias" class="btn btn-noticias-highlight">
-                            <i class="bi bi-newspaper me-2"></i>Ver Noticias
-                        </a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="info-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3><i class="bi bi-info-circle-fill me-2"></i>Portal Informativo de Ingeniería de Sistemas
+                            </h3>
+                            <p class="mb-0">
+                                Este portal está dedicado exclusivamente a estudiantes, docentes y personal asociado al
+                                programa de Ingeniería de Sistemas. Encuentra información sobre eventos, proyectos,
+                                convocatorias y recursos académicos. El acceso administrativo está disponible en la
+                                parte superior.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="bi bi-code-slash info-icon"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,7 +145,6 @@
             </div>
         </div>
 
-        {{-- FILTROS DE CATEGORÍAS --}}
         @php
         if ($esArray) {
             $categorias = collect($noticias)->pluck('categoria')->unique()->sort()->values();
@@ -170,7 +166,6 @@
         ];
         @endphp
 
-        {{-- CONTADOR DE RESULTADOS --}}
         <div class="resultados-info">
             <br><p class="text-muted text-center">
                 Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong>
@@ -197,8 +192,6 @@
                 @endforeach
             </div>
         </div>
-
-       
 
         @if(!$esArray && $noticias->hasPages())
         <div class="pagination-wrapper mt-5">
@@ -254,32 +247,6 @@
     </div>
 </section>
 
-<section class="info-banner" style="padding-top: 0; margin-top: 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="info-box">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h3><i class="bi bi-info-circle-fill me-2"></i>Portal Informativo de Ingeniería de Sistemas
-                            </h3>
-                            <p class="mb-0">
-                                Este portal está dedicado exclusivamente a estudiantes, docentes y personal asociado al
-                                programa de Ingeniería de Sistemas. Encuentra información sobre eventos, proyectos,
-                                convocatorias y recursos académicos. El acceso administrativo está disponible en la
-                                parte superior.
-                            </p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <i class="bi bi-code-slash info-icon"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <div class="noticia-modal-overlay" id="noticiaModal" onclick="cerrarNoticiaExpandida(event)">
     <div class="noticia-modal-container">
         <button class="noticia-modal-close" onclick="cerrarNoticiaExpandida(event)">
@@ -304,6 +271,46 @@
         </div>
     </div>
 </div>
+
+<section class="chatbot-promo-section">
+    <div class="container">
+        <div class="chatbot-promo-card">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-2 col-md-3 text-center">
+                    <div class="chatbot-icon-wrap">
+                        <i class="bi bi-robot"></i>
+                        <span class="chatbot-pulse-ring"></span>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-9">
+                    <div class="chatbot-promo-badge mb-2">
+                        <i class="bi bi-cpu me-1"></i> Herramienta Digital · Programa de Ingeniería de Sistemas
+                    </div>
+                    <h2 class="chatbot-promo-title">Asistente Virtual del Programa</h2>
+                    <p class="chatbot-promo-desc">
+                        El Programa de Ingeniería de Sistemas pone a disposición de su comunidad un
+                        <strong style="color: var(--uts-green);">Asistente Virtual</strong>,
+                        diseñado para orientar a estudiantes y docentes en procesos académicos,
+                        administrativos y trámites institucionales del programa.
+                    </p>
+                    <div class="chatbot-promo-features">
+                        <span class="chatbot-feature-chip">
+                            <i class="bi bi-lightning-charge-fill"></i> Respuestas inmediatas
+                        </span>
+                        <span class="chatbot-feature-chip">
+                            <i class="bi bi-clock-history"></i> Disponible 24/7
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 text-center">
+                    <a href="https://sistemastg.uts.edu.co/chatbot" class="btn-chatbot-promo">
+                        <i class="bi bi-chat-dots-fill me-2"></i>Iniciar consulta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="cta-section">
     <div class="container">
