@@ -748,6 +748,144 @@ html {
     color: var(--uts-green);
 }
 
+.chatbot-promo-section {
+    padding: 48px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+}
+
+.chatbot-promo-card {
+    position: relative;
+    background: linear-gradient(135deg, var(--uts-dark) 0%, #1e2d3d 100%);
+    border-radius: 24px;
+    padding: 2.8rem 2.5rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.chatbot-promo-deco {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+.chatbot-icon-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, var(--uts-blue) 0%, #0080b8 100%);
+    border-radius: 50%;
+    font-size: 3rem;
+    color: white;
+    box-shadow: 0 8px 30px rgba(0, 163, 224, 0.45);
+}
+
+.chatbot-pulse-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 163, 224, 0.4);
+    animation: chatbot-pulse 2s ease-out infinite;
+}
+
+@keyframes chatbot-float {
+    0%, 100% { transform: translateY(0);    }
+    50%       { transform: translateY(-8px); }
+}
+
+@keyframes chatbot-pulse {
+    0%   { transform: scale(1);    opacity: 0.8; }
+    100% { transform: scale(1.35); opacity: 0;   }
+}
+
+.chatbot-promo-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(164, 210, 51, 0.15);
+    border: 1px solid rgba(164, 210, 51, 0.4);
+    color: var(--uts-green);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 12px;
+    border-radius: 99px;
+    text-transform: uppercase;
+}
+
+.chatbot-promo-title {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: white;
+    margin: 0.4rem 0 0.8rem;
+    line-height: 1.2;
+}
+
+.chatbot-promo-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.97rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+.chatbot-promo-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chatbot-feature-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 99px;
+    backdrop-filter: blur(4px);
+}
+
+.chatbot-feature-chip i {
+    color: var(--uts-green);
+    font-size: 0.8rem;
+}
+
+
+.btn-chatbot-promo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--uts-green) 0%, var(--uts-dark-green) 100%);
+    color: var(--uts-dark);
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(164, 210, 51, 0.45);
+    transition: all 0.25s ease;
+    width: 100%;
+    max-width: 260px;
+}
+
+.btn-chatbot-promo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(164, 210, 51, 0.55);
+    background: linear-gradient(135deg, var(--uts-dark-green) 0%, #5a7a1a 100%);
+    color: white;
+}
+
+.chatbot-promo-hint {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.75rem;
+    margin: 0;
+}
+
 .cta-section {
     padding: 40px 0;
     background: linear-gradient(135deg, var(--uts-dark) 0%, #1a1a1a 100%);
@@ -998,6 +1136,28 @@ html {
         width: 100%;
         justify-content: center;
         align-items: center;
+    }
+    .chatbot-promo-card {
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+
+    .chatbot-promo-title {
+        font-size: 1.5rem;
+    }
+
+    .chatbot-promo-features {
+        justify-content: center;
+    }
+
+    .btn-chatbot-promo {
+        max-width: 100%;
+    }
+
+    .chatbot-icon-wrap {
+        width: 85px;
+        height: 85px;
+        font-size: 2.2rem;
     }
 }
 
