@@ -279,8 +279,9 @@
 .noticia-imagen img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    object-fit: contain;
+    background: #f0f0f0; 
 }
 
 .noticia-card:hover .noticia-imagen img {
@@ -477,7 +478,8 @@
 .noticia-modal-imagen img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #f0f0f0; 
 }
 
 .noticia-modal-categoria {
