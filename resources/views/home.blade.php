@@ -110,9 +110,7 @@
                                  alt="{{ $noticiaTitulo }}"
                                  onerror="this.src='{{ asset('images/placeholder-noticia.jpg') }}'">
                         @else
-                            <img src="{{ $noticiaImagen ? asset('storage/' . $noticiaImagen) : asset('images/placeholder-noticia.jpg') }}" 
-                                 alt="{{ $noticiaTitulo }}"
-                                 onerror="this.src='{{ asset('images/placeholder-noticia.jpg') }}'">
+                            <img src="{{ $noticiaImagen ? asset('images/noticias/' . $noticiaImagen) : asset('images/placeholder-noticia.jpg') }}">
                         @endif
                         <div class="noticia-categoria">{{ $noticiaCategoria }}</div>
                     </div>
@@ -145,6 +143,7 @@
             </div>
         </div>
 
+        {{-- FILTROS DE CATEGORÍAS --}}
         @php
         if ($esArray) {
             $categorias = collect($noticias)->pluck('categoria')->unique()->sort()->values();
@@ -166,6 +165,7 @@
         ];
         @endphp
 
+        {{-- CONTADOR DE RESULTADOS --}}
         <div class="resultados-info">
             <br><p class="text-muted text-center">
                 Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong>
@@ -192,6 +192,8 @@
                 @endforeach
             </div>
         </div>
+
+       
 
         @if(!$esArray && $noticias->hasPages())
         <div class="pagination-wrapper mt-5">
@@ -436,15 +438,10 @@ function abrirNoticiaExpandida(event, noticiaId) {
     }
 
     let imagenUrl;
-    if (esArray) {
-        imagenUrl = noticia.imagen 
-            ? `{{ asset('images/noticias') }}/${noticia.imagen}` 
-            : '{{ asset('images/placeholder-noticia.jpg') }}';
-    } else {
-        imagenUrl = noticia.imagen 
-            ? `{{ asset('storage') }}/${noticia.imagen}` 
-            : '{{ asset('images/placeholder-noticia.jpg') }}';
-    }
+    
+    imagenUrl = noticia.imagen 
+    ? `{{ asset('images/noticias') }}/${noticia.imagen}` 
+    : '{{ asset('images/placeholder-noticia.jpg') }}';
 
     document.getElementById('modalImagen').src = imagenUrl;
     document.getElementById('modalCategoria').textContent = noticia.categoria;
