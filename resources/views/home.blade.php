@@ -90,8 +90,6 @@
         @endphp
 
         @if($countNoticias > 0)
-
-        {{-- TARJETAS DE NOTICIAS --}}
         <div class="row g-4" id="noticiasContainer">
             @foreach($noticiasCollection as $noticia)
             @php
@@ -143,7 +141,6 @@
             </div>
         </div>
 
-        {{-- FILTROS DE CATEGORÍAS --}}
         @php
         if ($esArray) {
             $categorias = collect($noticias)->pluck('categoria')->unique()->sort()->values();
@@ -164,8 +161,6 @@
             'Banco de ideas' => 'lightbulb'
         ];
         @endphp
-
-        {{-- CONTADOR DE RESULTADOS --}}
         <div class="resultados-info">
             <br><p class="text-muted text-center">
                 Mostrando <strong id="countNoticias">{{ $countNoticias }}</strong>
@@ -192,8 +187,6 @@
                 @endforeach
             </div>
         </div>
-
-       
 
         @if(!$esArray && $noticias->hasPages())
         <div class="pagination-wrapper mt-5">
@@ -314,6 +307,148 @@
     </div>
 </section>
 
+
+<section class="docs-repository" id="documentos">
+    <div class="container">
+
+        <div class="docs-repo-header">
+            <span class="docs-repo-badge">
+                <i class="bi bi-folder2-open"></i>
+            </span>
+            <div>
+                <h1 class="docs-repo-title">BASE DOCUMENTAL</h1>
+                <p class="docs-repo-subtitle">Accede a todos los formatos de presentación institucionales de manera eficiente</p>
+            </div>
+        </div>
+
+        <div class="docs-repo-grid">
+
+            <a href="https://www.dropbox.com/scl/fo/pudgcaq639agy7t06ahjs/AN084HnuyHffgYL5i--v_Ks/DOCUMENTOS%20DE%20GRADO?dl=0&rlkey=6s0b9ajweteyx2ang7ywvk6xm&subfolder_nav_tracking=1" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h1 class="docs-repo-card-title">Documentos de grado</h1>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- <a href="URL_REPOSITORIO_FORMATOS_PROYECTOS" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-clipboard2-check-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h3 class="docs-repo-card-title">Proyectos de Grado</h3>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a> -->
+            <a href="https://www.dropbox.com/scl/fo/pudgcaq639agy7t06ahjs/AO89K3g1MCqPwPhf2WEnMlM/1.%20ESTRAT%C3%89GICOS?rlkey=6s0b9ajweteyx2ang7ywvk6xm&subfolder_nav_tracking=1&st=0b33vwxy&dl=0" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-kanban-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h3 class="docs-repo-card-title">Estrategicos</h3>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a>
+            <a href="https://www.dropbox.com/scl/fo/pudgcaq639agy7t06ahjs/AEvli1Il2uI-fW95ixlj0g4/2.%20MISIONALES?rlkey=6s0b9ajweteyx2ang7ywvk6xm&subfolder_nav_tracking=1&st=53qahph2&dl=0" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-flag-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h3 class="docs-repo-card-title">Misionales</h3>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a>
+            <a href="https://www.dropbox.com/scl/fo/pudgcaq639agy7t06ahjs/AH9-B2R1PMWwnjWfFj-p8ac/3.%20APOYO?rlkey=6s0b9ajweteyx2ang7ywvk6xm&subfolder_nav_tracking=1&st=y6rahlwh&dl=0" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h3 class="docs-repo-card-title">Apoyo</h3>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a>
+            <a href="https://www.dropbox.com/scl/fo/pudgcaq639agy7t06ahjs/AGwr6IX4cI8nIamovS01zak/4.%20SEGUIMIENTO%20Y%20CONTROL?rlkey=6s0b9ajweteyx2ang7ywvk6xm&subfolder_nav_tracking=1&st=ls16eegr&dl=0" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h3 class="docs-repo-card-title">Seguimiento y Control</h3>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a>
+            <a href="https://www.dropbox.com/scl/fo/pudgcaq639agy7t06ahjs/ACuBfp1o0_StOmyiBnb5laE/DIRECCIONAMIENTO%20ESTRAT%C3%89GICO?rlkey=6s0b9ajweteyx2ang7ywvk6xm&subfolder_nav_tracking=1&st=gphygp6a&dl=0" target="_blank" class="docs-repo-card">
+                <div class="docs-repo-card-icon">
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                </div>
+                <div class="docs-repo-card-body">
+                    <h3 class="docs-repo-card-title">Direccionamiento Estratégico</h3>
+                </div>
+                <div class="docs-repo-card-action">
+                    <span>Ir al repositorio</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="calendario-section">
+    <div class="container">
+        <div class="calendario-banner">
+
+    <div class="calendario-deco">
+        <i class="bi bi-calendar2-week-fill"></i>
+    </div>
+
+    <div class="calendario-content">
+        <span class="calendario-badge">
+            <i class="bi bi-clock-fill me-1"></i> Semestre 2026-I
+        </span>
+        <h2 class="calendario-title">Calendario Académico</h2>
+        <p class="calendario-desc">
+            Consulta las fechas importantes y eventos académicos del semestre.
+        </p>
+        <a href="https://www.uts.edu.co/sitio/calendario-academico/" target="_blank" class="calendario-btn d-none d-md-inline-flex">
+            <i class="bi bi-box-arrow-up-right me-2"></i>Ver calendario oficial
+        </a>
+    </div>
+
+    <div class="calendario-grid-deco" aria-hidden="true">
+        <div class="cal-mini">
+            <div class="cal-mini-header" id="calMesAno"></div>
+            <div class="cal-mini-grid" id="calGrid"></div>
+        </div>
+    </div>
+    <a href="https://www.uts.edu.co/sitio/calendario-academico/" target="_blank" class="calendario-btn d-md-none">
+        <i class="bi bi-box-arrow-up-right me-2"></i>Ver calendario oficial
+    </a>
+
+</div>
+    </div>
+</section>
+
 <section class="cta-section">
     <div class="container">
         <div class="cta-content">
@@ -321,7 +456,7 @@
             <h2>¿Quieres conocer más sobre Ingeniería de Sistemas?</h2>
             <p>Explora nuestra oferta académica, proyectos destacados y oportunidades</p>
             <a href="https://www.uts.edu.co/sitio" target="_blank" class="btn btn-cta">
-                <i class="bi bi-arrow-right-circle me-2"></i>Visitar sitio oficial UTS
+                <i class="bi bi-box-arrow-up-right me-2"></i>Visitar sitio UTS
             </a>
         </div>
     </div>
@@ -501,5 +636,43 @@ document.addEventListener('DOMContentLoaded', function() {
         filtrarPorCategoria(categoria);
     }
 });
+
+
+(function() {
+    const DIAS = ['L','M','X','J','V','S','D'];
+    const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                   'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+    const hoy    = new Date();
+    const anno   = hoy.getFullYear();
+    const mes    = hoy.getMonth();
+    const diaHoy = hoy.getDate();
+
+    document.getElementById('calMesAno').textContent = MESES[mes] + ' ' + anno;
+
+    const grid = document.getElementById('calGrid');
+
+    DIAS.forEach(d => {
+        const s = document.createElement('span');
+        s.textContent = d;
+        s.classList.add('cal-dia-header');
+        grid.appendChild(s);
+    });
+
+    let primerDia = new Date(anno, mes, 1).getDay();
+    primerDia = primerDia === 0 ? 6 : primerDia - 1;
+
+    for (let i = 0; i < primerDia; i++) {
+        grid.appendChild(document.createElement('span'));
+    }
+
+    const totalDias = new Date(anno, mes + 1, 0).getDate();
+    for (let d = 1; d <= totalDias; d++) {
+        const s = document.createElement('span');
+        s.textContent = d;
+        if (d === diaHoy) s.classList.add('cal-today');
+        grid.appendChild(s);
+    }
+})();
 </script>
 @endpush
