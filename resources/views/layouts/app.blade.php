@@ -13,25 +13,46 @@
 </head>
 <body>
     <div class="contain-nav-hero">
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-            <div class="container-fluid px-4">
-                <a id="contain-desktop-logos" class="navbar-brand ms-5" href="/">
-                    <img src="{{ asset('images/favicon.png') }}" alt="Favicon" height="50">
-                    <img src="{{ asset('images/escudo-uts.png') }}" alt="UTS Logo" height="50">
-                </a>
-                <a id="contain-mobile-logos" class="navbar-brand" href="/">
-                    <img src="{{ asset('images/programa-logo.png') }}" alt="Favicon" height="40">
-                </a>
-                <div class="ms-auto">
-                <a href="https://sistemastg.uts.edu.co/tg" target="_blank" class="btn btn-uts-green px-3">
-                    <i class="bi bi-person-circle me-2"></i>Sistemas TG
-                </a>
-                    <a href="https://sistemastg.uts.edu.co/chatbot" target="_blank" class="btn btn-asistente px-2">
-                        <i class="bi bi-robot me-2"></i> Asistente
+       <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container-fluid px-4">
+            <a id="contain-desktop-logos" class="navbar-brand ms-3" href="/">
+                <img src="{{ asset('images/favicon.png') }}" alt="Favicon" height="50">
+                <img src="{{ asset('images/escudo-uts.png') }}" alt="UTS Logo" height="50">
+            </a>
+            <a id="contain-mobile-logos" class="navbar-brand" href="/">
+                <img src="{{ asset('images/programa-logo.png') }}" alt="Favicon" height="40">
+            </a>
+            <button class="navbar-toggler border-0 ms-auto" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarButtons"
+                aria-controls="navbarButtons"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarButtons">
+                <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 py-3 py-lg-0">
+ 
+                    <a href="{{ route('login') }}" class="btn btn-uts-green px-3">
+                        <i class="bi bi-person-circle me-2"></i>Sistemas TG
+                    </a>
+ 
+                    <a href="https://sistemastg.uts.edu.co/chatbot" target="_blank" class="btn btn-uts-gray px-3">
+                        <i class="bi bi-robot me-2"></i>Asistente
+                    </a>
+ 
+                    <a href="https://sistemastg.uts.edu.co/#noticias" class="btn btn-uts-green px-3">
+                        <i class="bi bi-newspaper me-2"></i>Noticias
+                    </a>
+ 
+                    <a href="#documentos" class="btn btn-uts-gray px-3">
+                        <i class="bi bi-folder2-open me-2"></i>Documentos
                     </a>
                 </div>
             </div>
-        </nav>
+ 
+        </div>
+    </nav>
         <main>
             @yield('content')
         </main>
@@ -60,7 +81,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; {{ date('Y') }} Unidades Tecnológicas de Santander - Todos los derechos reservados</p>
+            <p>&copy; 2026 Unidades Tecnológicas de Santander - Todos los derechos reservados</p>
             <p class="footer-tagline">¡Lo hacemos posible!</p>
         </div>
     </footer>
