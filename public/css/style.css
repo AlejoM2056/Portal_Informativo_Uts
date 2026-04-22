@@ -78,7 +78,7 @@ html {
     padding: 8px 0;
 }
 
-.btn-asistente {
+.btn-uts-gray {
     background-color: #cbcbcb;
     color: var(--uts-dark);
     border: none;
@@ -114,7 +114,7 @@ html {
     box-shadow: 0 4px 12px rgba(164, 210, 51, 0.4);
 }
 
-.btn-asistente:hover {
+.btn-uts-gray:hover {
     background-color: #a9a9a9;
     color: white;
     transform: translateY(-2px);
@@ -888,10 +888,10 @@ html {
 }
 
 .cta-section {
-    padding: 40px 0;
+    padding: 20px 0;
     background: linear-gradient(135deg, var(--uts-dark) 0%, #1a1a1a 100%);
     text-align: center;
-    padding-bottom: 10%;
+    padding-bottom: 30px;
 }
 
 .cta-content h2 {
@@ -909,7 +909,7 @@ html {
 
 .btn-cta {
     background: linear-gradient(135deg, var(--uts-green) 0%, var(--uts-dark-green) 100%);
-    color: var(--uts-dark);
+    color: white;
     border: none;
     padding: 1.2rem 3rem;
     border-radius: 50px;
@@ -922,7 +922,7 @@ html {
 .btn-cta:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 30px rgba(164, 210, 51, 0.5);
-    color: var(--uts-dark);
+    color: white;
 }
 
 
@@ -1062,13 +1062,14 @@ html {
     .cta-content h2 {
         font-size: 2.2rem;
     }
-    .btn-uts-green, .btn-asistente {
+    .btn-uts-green, .btn-uts-gray {
         padding: 0.2rem 0.4rem !important;
         font-size: 0.85rem;
     }
 }
 
 @media (max-width: 768px) {
+    
     .carousel-section-title {
         font-size: 2.5rem;
     }
@@ -1161,6 +1162,8 @@ html {
         font-size: 2.2rem;
     }
 }
+
+
 
 @keyframes fadeInUp {
     from {
