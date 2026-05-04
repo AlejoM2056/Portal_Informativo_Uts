@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarButtons">
                 <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 py-3 py-lg-0">
  
-                    <a href="{{ route('login') }}" class="btn btn-uts-green px-3">
+                    <a href="https://sistemastg.uts.edu.co/tg" target="_blank" class="btn btn-uts-green px-3">
                         <i class="bi bi-person-circle me-2"></i>Sistemas TG
                     </a>
  
